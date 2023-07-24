@@ -16,6 +16,9 @@ function App() {
         msg: message,
         type: type
     })
+    setTimeout(() => {
+      setAlert(null)
+    }, 1500);
 }
   const toggleMode = ()=>{
     if (mode === 'light') {
@@ -35,7 +38,7 @@ function App() {
   <Alert alert={alert}/>
  <div className="container my-3 mx-7">
     <Routes>
-      <Route exact path="/" element={ <TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={mode}/>} />
+      <Route exact path="/" element={ <TextForm showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Remove extra spaces" mode={mode}/>} />
       <Route exact path="/About" element={ <div className="container">  <About mode={mode} />  </div>} />
     </Routes>
   </div>

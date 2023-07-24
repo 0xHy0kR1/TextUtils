@@ -1,43 +1,30 @@
 import React, {useState} from "react";
 
-export default function About() {
+export default function About(props) {
 
-    // Below we just make the state and set its initial state as the javascript object
-    const [myStyle, setMyStyle] = useState({
-        color : 'white',
-        background : 'black'
-    })
+    // // Below we just make the state and set its initial state as the javascript object
+    // const [myStyle, setMyStyle] = useState({
+    //     color : 'black',
+    //     background : 'white'
+    // })
 
-    // Changing the text of button using state
-    const [btntext, setBtnText] = useState("Enable Light Mode");
-    const toggleStyle = ()=>{
-        if(myStyle.color === 'white'){
-            setMyStyle({
-                color : 'black',
-                backgroundColor : 'white',
-                border : '1px solid black'
-            })
-            setBtnText("Enable Dark Mode");
-        }
-        else{
-            setMyStyle({
-                color : 'white',
-                backgroundColor : 'black',
-                border : '1px solid white'
-            })
-            setBtnText("Enable Light Mode");
-        }
+    // Below we just make an object to set color and background properties of about
+    let myStyle = {
+        color: props.mode === 'dark' ? 'white' : '#1e1631',
+        backgroundColor: props.mode === 'dark' ? '#1e1631' : 'white',
+        border: '1px solid',
+        borderColor: props.mode === 'dark' ? 'white' : '#1e1631'
     }
 
 return (
-<div className="container my-3" style={myStyle}>
-    <h2>About Us</h2>
+<div className="container my-3">
+    <h2 style={{color: props.mode === 'dark' ? 'white' : '#1e1631'}}>About Us</h2>
     <div className="accordion accordion-flush" id="accordionFlushExample">
         <div className="accordion-item">
             <h2 className="accordion-header">
                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style={myStyle}>
-                    Accordion Item #1
+                    <strong >Analyze Your text</strong>
                 </button>
             </h2>
             <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -52,7 +39,7 @@ return (
             <h2 className="accordion-header">
                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" style={myStyle}>
-                    Accordion Item #2
+                    <strong>Free to use</strong>
                 </button>
             </h2>
             <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -68,7 +55,7 @@ return (
             <h2 className="accordion-header">
                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={myStyle}>
-                    Accordion Item #3
+                    <strong>Browser compatible</strong>
                 </button>
             </h2>
             <div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -82,9 +69,6 @@ return (
                 </div>
             </div>
         </div>
-    </div>
-    <div className="container my-3">
-        <button onClick={toggleStyle} type="button" className="btn btn-primary">{btntext}</button>
     </div>
 </div>
 );
